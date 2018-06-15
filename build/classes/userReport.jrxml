@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3f798571-439a-4e29-8355-bcb17af2077e">
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     highscore.`username` AS highscore_username,
+     highscore.`score` AS highscore_score,
+     user.`countvisited` AS user_countvisited
+FROM
+     `user` user INNER JOIN `highscore` highscore ON user.`username` = highscore.`username`]]>
+	</queryString>
+	<field name="highscore_username" class="java.lang.String"/>
+	<field name="highscore_score" class="java.lang.Integer"/>
+	<field name="user_countvisited" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="275" y="0" width="300" height="64" uuid="ea8aee1a-cd78-4bf2-a341-50df343b04cb"/>
+				<imageExpression><![CDATA["leaf_banner_violet.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="0" width="263" height="48" uuid="76e4d83b-a4a3-4b9c-b2a6-09c6cda6685a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[SkyForce]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="15" y="42" width="200" height="22" uuid="b025cdfe-a1f9-4c00-9cee-0e60f4c78df7"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[User Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="f4326dd3-7ebd-4a34-ae40-dc892bb76ed7"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="185" height="15" uuid="d94aabd0-7763-49f3-b22b-6417047fa102"/>
+				<text><![CDATA[User]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="185" y="19" width="185" height="15" uuid="f6051e09-ec22-4886-84f9-f8d3f5082a88"/>
+				<text><![CDATA[Highscore]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="370" y="19" width="185" height="15" uuid="058fbe1e-06d8-4484-b73e-09709f767749"/>
+				<text><![CDATA[Times Visited]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="6a7e2840-d78d-40e9-8136-7e26544ec241"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="185" height="15" uuid="3e2f11a9-fd58-4948-a954-0a642b4a23f0"/>
+				<textFieldExpression><![CDATA[$F{highscore_username}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="185" y="0" width="185" height="15" uuid="36c3bd0d-1278-448a-8bc0-b402d3e03f1e"/>
+				<textFieldExpression><![CDATA[$F{highscore_score}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="370" y="0" width="185" height="15" uuid="11b36687-b4ca-4da5-b10f-9ff2f4db641d"/>
+				<textFieldExpression><![CDATA[$F{user_countvisited}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="dd252552-eef9-4d64-a808-f317be739cd7"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="aaccf8de-68b1-41fb-894f-aa9e7ac19d26"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="5a8d3acf-88fe-41d9-a968-d7be9fdabc5b"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="b8a9225f-4ee0-40c9-8f96-7f434a8e75de"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

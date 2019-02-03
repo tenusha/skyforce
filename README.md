@@ -4,7 +4,7 @@ Java based classic arcade style 2D single player shooting game developed with re
 
 ## Game Play
 
-<div style="text-align:center"><img src="https://i.ibb.co/nwJjw21/Untitled.jpg" alt="Untitled" border="0"></div>
+<div style="text-align:center" align="center"><img src="https://i.ibb.co/nwJjw21/Untitled.jpg" alt="Untitled" border="0"></div>
 
 Developed by ALPHA Team
 * Tenusha Guruge

@@ -13,6 +13,7 @@ public class Bullet {
         this.x = x;
         this.y = y;
         speed = 10;
+
     }
 
     public void tick(){

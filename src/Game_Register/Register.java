@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 
 public class Register extends javax.swing.JFrame implements Game_Validate{
 
-   //public static Connection dbConn;
    
     public Register() {
         initComponents();
@@ -103,7 +102,7 @@ public class Register extends javax.swing.JFrame implements Game_Validate{
                 ResultSet query1 = dbConn.createStatement().executeQuery("SELECT `username` FROM user WHERE `username` = '" +un.getText()+ "'");
 
                if(query1.last()){
-                   JOptionPane.showMessageDialog(Register,"Registration Successfull !","Successfull",JOptionPane.INFORMATION_MESSAGE);
+                   JOptionPane.showMessageDialog(null,"Registration Successfull !","Successfull",JOptionPane.INFORMATION_MESSAGE);
                    this.setVisible(false);
                    new SignIn().setVisible(true);
                }
@@ -150,26 +149,27 @@ public class Register extends javax.swing.JFrame implements Game_Validate{
     public void dbconnect(){    
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            dbConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/skyforce?", "root", "");
+            dbConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/skyforce?zeroDateTimeBehavior=convertToNull", "root", "");
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("can't connect to db");
         }
     }
+    @Override
     public boolean validateUsername(String username){
         dbconnect();
         boolean valid=false;
         try{
-            ResultSet query = dbConn.createStatement().executeQuery("SELECT `username` FROM user WHERE `username` = '" +un.getText()+ "'");
+            ResultSet query = dbConn.createStatement().executeQuery("SELECT username FROM user WHERE username = '" +un.getText()+ "'");
             if(query.last()){//check username has taken or not
                 valid = true;
             }
             if(valid==false){
                 if(username.length()==0){ //check username is null 
-                    JOptionPane.showMessageDialog(Register,"Username cannot be EMPTY !","Error",JOptionPane.OK_OPTION);
+                    JOptionPane.showMessageDialog(null,"Username Cannot be EMPTY !","Error",JOptionPane.OK_OPTION);
                     return false;
                 }
                 else if(username.length()>=10 ){ //check username length
-                    JOptionPane.showMessageDialog(Register,"Username must contain less than 10 characters !","Error",JOptionPane.OK_OPTION);
+                    JOptionPane.showMessageDialog(null,"Username must Contain less than 10 Characters !","Error",JOptionPane.OK_OPTION);
                     return false;
                 }
                 else{
@@ -177,7 +177,7 @@ public class Register extends javax.swing.JFrame implements Game_Validate{
                 }
             }
             else{
-                 JOptionPane.showMessageDialog(null,"This username is taken try another !","Error",JOptionPane.OK_OPTION);
+                 JOptionPane.showMessageDialog(null,"This Username is Already Taken Try Another !","Error",JOptionPane.OK_OPTION);
                  return false;
             }
         }
@@ -187,6 +187,7 @@ public class Register extends javax.swing.JFrame implements Game_Validate{
         }
     }
     
+    @Override
     public boolean validatePassword(String password){
         dbconnect();
         boolean plength=false;
@@ -201,18 +202,18 @@ public class Register extends javax.swing.JFrame implements Game_Validate{
                }
         }
         if(pvalid==0 || pvalid1==0){
-            JOptionPane.showMessageDialog(Register,"Password should contain atleat one letter and a number !","Error",JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null,"Password Should Contain Atleat One Letter and a Number !","Error",JOptionPane.OK_OPTION);
             return false;
         }
         if(password.length()>=5 && password.length()<=15){//check password length
             plength=true;
         }
         else{
-            JOptionPane.showMessageDialog(Register,"Password should contain atleast 5 characters !","Error",JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null,"Password Should Contain Minimum 5 Characters and Maximum 15 Characters !","Error",JOptionPane.OK_OPTION);
             return false;
         }
         if(password.length()==0){
-            JOptionPane.showMessageDialog(Register,"Password cannot be EMPTY !","Error",JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null,"Password Cannot be EMPTY !","Error",JOptionPane.OK_OPTION);
             return false;
         }
         

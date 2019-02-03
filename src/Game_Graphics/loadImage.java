@@ -1,4 +1,3 @@
-
 package Game_Graphics;
 
 import java.awt.image.BufferedImage;
@@ -8,8 +7,8 @@ public class loadImage {
     public static BufferedImage image, player, enemy, bullet, backG;
 	
 	public static void init(){
-		image = imageLoader("/Image/background.png");
-                backG = imageLoader("/Image/frame.jpg");
+		image = imageLoader("/Image/BackNew.jpg");
+                backG = imageLoader("/Image/BackBack.jpg");
 		player = imageLoader("/Image/orange.png");
                 enemy = imageLoader("/Image/red.png");
                 bullet = imageLoader("/Image/bullet.png");

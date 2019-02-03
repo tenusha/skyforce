@@ -7,7 +7,6 @@ package Game_SignIn;
 
 import Game_Menu.Menu;
 import Game_Register.Register;
-import Game_SetUp.GameSetUp;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +18,8 @@ public class SignIn extends javax.swing.JFrame {
     public static String password = " ";
     public static boolean logged;
     public static Connection dbConn;
-    int co;
+    private int co;
+    private String name,passwd;
     
     public SignIn() {
         initComponents();
@@ -93,18 +93,21 @@ public class SignIn extends javax.swing.JFrame {
     private void SignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignInActionPerformed
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            dbConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/skyforce?", "root", "");
-            ResultSet query = dbConn.createStatement().executeQuery("SELECT username,countvisited FROM user WHERE `username` = '" +uName.getText()+ "' AND password = '" +pwd.getText()+ "'");
+            dbConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/skyforce?zeroDateTimeBehavior=convertToNull", "root", "");
+            ResultSet query = dbConn.createStatement().executeQuery("SELECT username,countvisited,password FROM user WHERE username = '" +uName.getText()+ "' AND password = '" +pwd.getText()+ "'");
             
             while(query.next()) {
+                name=query.getString("username");
+                passwd=query.getString("password");
                 co = query.getInt("countvisited");
             }
+           
             
-            co = co + 1;
-            dbConn.prepareStatement("UPDATE user SET countvisited = '"+co+"' WHERE username = '"+uName.getText()+"'").executeUpdate();
-            
-            
-            if(query.last()){
+            if(query.last() && name.equals(uName.getText()) && passwd.equals(pwd.getText()) ){
+                
+                co = co + 1;
+                dbConn.prepareStatement("UPDATE user SET countvisited = '"+co+"' WHERE username = '"+uName.getText()+"'").executeUpdate();
+                
                 this.setVisible(false);
                 new Menu(uName.getText()).setVisible(true);
                 

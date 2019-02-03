@@ -5,7 +5,6 @@
  */
 package Game_Menu;
 
-import static Game_Display.Display.frame;
 import Game_Highscore.Highscore;
 import Game_SetUp.GameSetUp;
 import static Game_SignIn.SignIn.dbConn;
@@ -14,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
@@ -121,7 +119,7 @@ public class Menu extends javax.swing.JFrame {
     private void PlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayActionPerformed
 
         this.setVisible(false);
-        GameSetUp game = new GameSetUp("SkyForce Game  User Name  :- " + Uname, 500, 600);
+        GameSetUp game = new GameSetUp("SkyForce Game  Username  :- " + Uname, 500, 600);
         game.start();
 
     }//GEN-LAST:event_PlayActionPerformed
@@ -131,7 +129,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitActionPerformed
 
     private void AboutUsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AboutUsActionPerformed
-        JOptionPane.showMessageDialog(AboutUs, "Developed By ALPHA Team \n Members : \n Tenusha Guruge \n Vimukthi Rajapaksha \n Aravinda Kulasooriya \n Ranmal Dewage ", "About Us", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(AboutUs, "Developed By ALPHA Team \n Members : \n Ranmal Dewage \n Tenusha Guruge \n Vimukthi Rajapaksha \n Aravinda Kulasooriya ", "About Us", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_AboutUsActionPerformed
 
     private void HighscoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HighscoreActionPerformed
@@ -141,7 +139,7 @@ public class Menu extends javax.swing.JFrame {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            dbConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/skyforce?", "root", "");
+            dbConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/skyforce?zeroDateTimeBehavior=convertToNull", "root", "");
 
             ResultSet query = dbConn.createStatement().executeQuery("SELECT username, score FROM highscore ORDER BY 2 DESC");
                 DefaultTableModel model = new DefaultTableModel(new Object[]{"User", "Highscore"}, 0);

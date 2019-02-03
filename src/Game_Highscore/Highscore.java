@@ -6,13 +6,8 @@
 package Game_Highscore;
 
 import Game_Menu.Menu;
-import Game_SignIn.SignIn;
-import static Game_SignIn.SignIn.dbConn;
-import java.sql.DriverManager;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import net.sf.jasperreports.view.*;
-import net.sf.jasperreports.engine.*;
+
 
 /**
  *
@@ -93,19 +88,10 @@ public class Highscore extends javax.swing.JFrame {
     }//GEN-LAST:event_exitActionPerformed
 
     private void uReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uReportActionPerformed
-        try{
-            //Class.forName("com.mysql.jdbc.Driver");
-            //dbConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/skyforce?", "root", "");
-            
-            String REPORT ="G:\\SkyForce_ue2\\src\\userReport.jrxml";
-            JasperReport JASP_REP = JasperCompileManager.compileReport(REPORT);
-            System.out.println("opened");
-            JasperPrint JASP_PRINT = JasperFillManager.fillReport(JASP_REP, null, dbConn);
-            JasperViewer.viewReport(JASP_PRINT);
-        }
-        catch(Exception x){
-            x.getMessage();
-        }
+        
+        //jasper report or i-report generation code here
+        
+        
     }//GEN-LAST:event_uReportActionPerformed
 
     /**
